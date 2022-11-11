@@ -1,0 +1,15 @@
+[bot]
+token = "<discord token>"
+activity = "LISTENING"
+status = "To the voices in my head"
+admins = [ 1039853221897846825 ]
+testGuilds = [ 734077874708938864 ]
+enabledByDefault = true
+
+[database]
+driver = "org.h2.Driver"
+url = "jdbc:h2:./database"
+
+[tiktok]
+sessionId = "<refer to readme>"
+
