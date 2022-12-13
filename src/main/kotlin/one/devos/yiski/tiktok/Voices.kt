@@ -2,25 +2,25 @@ package one.devos.yiski.tiktok
 
 enum class Voices(val code: String, val desc: String) {
     // Disney Voices
-    GHOST_FACE("en_us_ghostface", "Ghost Face (no profanity)"),
-    CHEWBACCA("en_us_chewbacca", "Chewbacca (non-intelligible)"),
-    C3PO("en_us_c3po", "C3PO (no profanity)"),
-    STITCH("en_us_stitch", "Stitch (no profanity)"),
+    GHOST_FACE("en_us_ghostface", "Ghost Face (Scream)"),
+    //CHEWBACCA("en_us_chewbacca", "Chewbacca (Star Wars) [non-intelligible]"),
+    //C3PO("en_us_c3po", "C3PO (Star Wars)"),
+    //STITCH("en_us_stitch", "Stitch (Lilo & Stitch)"),
     // Stormtrooper
-    DEFAULT("en_us_stormtrooper", "Stormtrooper (no profanity)"),
-    ROCKET("en_us_rocket", "Rocket (no profanity)"),
+    DEFAULT("en_us_stormtrooper", "Stormtrooper (Star Wars)"),
+    //ROCKET("en_us_rocket", "Rocket (Guardians of the Galaxy)"),
 
     // English Voices
-    AU_FEMALE("en_au_001", "English AU - Female"),
-    AU_MALE("en_au_002", "English AU - Male"),
-    UK_MALE1("en_uk_001", "English UK - Male 1"),
-    UK_MALE2("en_uk_003", "English UK - Male 2"),
-    US_FEMALE1("en_us_001", "English US - Female (Int. 1)"),
-    US_FEMALE2("en_us_002", "English US - Female (Int. 2)"),
-    US_MALE1("en_us_006", "English US - Male 1"),
-    US_MALE2("en_us_007", "English US - Male 2"),
-    US_MALE3("en_us_009", "English US - Male 3"),
-    US_MALE4("en_us_010", "English US - Male 4"),
+    METRO("en_au_001", "Metro"), // English AU - Female
+    SMOOTH("en_au_002", "Smooth"), // English AU - Male
+    NARRATOR("en_uk_001", "Narrator"), // English UK - Male 1
+    UK_MALE("en_uk_003", "English UK - Male"),
+    US_FEMALE("en_us_001", "English US - Female (Int. 1)"),
+    JESSIE("en_us_002", "Jessie"), // English US - Female (Int. 2)
+    JOEY("en_us_006", "Joey"), // English US - Male 1
+    PROFESSOR("en_us_007", "Professor"), // English US - Male 2
+    SCIENTIST("en_us_009", "Scientist"), // English US - Male 3
+    CONFIDENCE("en_us_010", "Confidence"), // English US - Male 4
 
     // Europe Voices
     //FR_MALE1("fr_001", "French - Male 1"),
@@ -47,13 +47,22 @@ enum class Voices(val code: String, val desc: String) {
     //KR_MALE2("kr_004", "Korean - Male 1"),
 
     // Singing Voices
-    //ALTO("en_female_f08_salut_damour", "Alto"),
-    //TENOR("en_male_m03_lobby", "Tenor"),
-    //WARM_BREEZE("en_female_f08_warmy_breeze", "Warmy Breeze"),
-    //SUNSHINE_SOON("en_male_m03_sunshine_soon", "Sunshine Soon"),
+    //COTTAGECORE("en_female_f08_salut_damour", "Cottagecore"),
+    //JINGLE("en_male_m03_lobby", "Jingle"),
+    //OPEN_MIC("en_female_f08_warmy_breeze", "Open Mic"),
+    //TOON_BEAT("en_male_m03_sunshine_soon", "Toon Beat"),
 
     // Other
-    NARRATOR("en_male_narration", "Narrator"),
+    STORRY_TELLER("en_male_narration", "Story Teller"),
     WACKY("en_male_funny", "Wacky"),
-    PEACEFUL("en_female_emotional", "Peaceful")
+    PEACEFUL("en_female_emotional", "Peaceful"),
+
+    TRICKSTER("en_male_grinch", "Trickster"),
+    MAGICIAN("en_male_wizard", "Magician"),
+    MADAME_LEOTA("en_female_madam_leota", "Madame Leota"),
+    GHOST_HOST("en_male_ghosthost", "Ghost Host"),
+    PIRATE("en_male_pirate", "Pirate"),
+    EMPATHETIC("en_female_samc", "Empathetic"),
+    SERIOUS("en_male_cody", "Serious"),
+    WARM("es_mx_002", "Warm"),
 }

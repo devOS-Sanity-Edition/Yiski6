@@ -27,7 +27,6 @@ import xyz.artrinix.aviation.events.CommandFailedEvent
 import xyz.artrinix.aviation.internal.utils.on
 import xyz.artrinix.aviation.ratelimit.DefaultRateLimitStrategy
 
-
 object Yiski {
     private val version = this::class.java.`package`.implementationVersion ?: "DEV"
     val config = Config.loadConfig()
@@ -103,9 +102,7 @@ object Yiski {
                     return@newSuspendedTransaction null
             } ?: return@listener
 
-            val formattedText = event.message.contentDisplay
-
-            Audio.executeTikTok(formattedText, voice, event.guild)
+            Audio.executeTikTok(event.message.contentDisplay, voice, event.guild)
         }
     }
 

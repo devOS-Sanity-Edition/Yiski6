@@ -60,15 +60,13 @@ object Audio {
         val (_, trackScheduler) = getOrCreatePlayer(guild)
 
         val parsedText = text
-            .replace(Regex("(?:(?:https?|ftp|file):\\/\\/|www\\.|ftp\\.)(?:\\([-A-Z0-9+&@#\\/%=~_|\$?!:,.]*\\)|[-A-Z0-9+&@#\\/%=~_|\$?!:,.])*(?:\\([-A-Z0-9+&@#\\/%=~_|\$?!:,.]*\\)|[A-Z0-9+&@#\\/%=~_|\$])"), "")
-            .replace(Regex("[^(\\x00-\\xFF)]+(?:\$|\\s*)"), "")
-            .replace(Regex("\\w+:\\/\\/.*?(?=\\s)"), "")
+            .let { Regex("http\\S+", RegexOption.MULTILINE).replace(it, "link") }
+            .let { Regex("[^(\\x00-\\xFF)]+(?:\$|\\s*)", RegexOption.MULTILINE).replace(it, "") }
             .replace("\n", ", ")
             .replace("&", "and")
             .replace("%", "percent")
             .replace("+", "plus")
             .replace("_", "")
-            .replace(Regex("/[^\\w\\s]/+g"), "")
             .replace(" ", "+")
 
         parsedText.chunked(300).forEach {

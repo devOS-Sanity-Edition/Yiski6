@@ -8,7 +8,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.LongIdTable
 
 object MembersSettings : LongIdTable("member_settings") {
-    val voiceCode = varchar("voice", 30).default(Voices.DEFAULT.code)
+    val voiceCode = varchar("voice", 70).default(Voices.DEFAULT.code)
     val enabled = bool("enabled").default(Yiski.config.bot.enabledByDefault)
     val blacklisted = bool("blacklisted").default(false)
 }
