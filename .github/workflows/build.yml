@@ -77,8 +77,8 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            devOS-Sanity-Edition/Yiski6
-            ghcr.io/devOS-Sanity-Edition/Yiski6
+            devOS-Sanity-Edition/yiski6
+            ghcr.io/devOS-Sanity-Edition/yiski6
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
