@@ -1,6 +1,11 @@
 name: Java CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -31,3 +36,75 @@ jobs:
         with:
           name: Yiski6 Jar
           path: build/libs/Yiski6-Fat.jar
+
+      - name: 'Cache built jar'
+        id: cache-build
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-built-jars
+        with:
+          path: build/libs
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Yiski6-Fat.jar') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: 'Restore cache for built jar'
+        id: cache-build
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-built-jars
+        with:
+          path: build/libs
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Yiski6-Fat.jar') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            devOS-Sanity-Edition/Yiski6
+            ghcr.io/devOS-Sanity-Edition/Yiski6
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

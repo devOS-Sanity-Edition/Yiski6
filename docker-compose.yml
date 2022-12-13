@@ -1,0 +1,25 @@
+services:
+  yiski6:
+    container_name: Yiski6
+    build: .
+    networks:
+      - yiski
+    ports:
+      - 25300:25300
+    volumes:
+      - ./config.toml:/app/config.toml
+      - ./database.mv.db:/app/database.mv.db
+
+  lavalink:
+    image: fredboat/lavalink:dev
+    container_name: Yiski_Lavalink
+    restart: unless-stopped
+    networks:
+      - yiski
+    ports:
+      - 2333:2333
+    volumes:
+      - ./lavalink.yml:/opt/Lavalink/application.yml
+
+networks:
+  yiski:
