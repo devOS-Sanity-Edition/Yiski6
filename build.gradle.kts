@@ -41,7 +41,7 @@ dependencies {// Logger libraries for writing to the console
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-    implementation("org.postgresql:postgresql:42.5.0")
+    implementation("org.postgresql:postgresql:42.5.1")
     implementation("com.h2database:h2:2.1.214")
     // Ktor
     implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -53,6 +53,7 @@ dependencies {// Logger libraries for writing to the console
     // Audio dependencies
     //implementation("dev.schlaubi.lavakord:jda:3.7.0")
     implementation("com.sedmelluq:lavaplayer:1.3.77")
+    implementation("com.sedmelluq:lavaplayer-natives:1.3.14")
     // JDA
     implementation("com.github.DV8FromtheWorld:JDA:v5.0.0-alpha.22") {
         exclude(module = "opus-java")
