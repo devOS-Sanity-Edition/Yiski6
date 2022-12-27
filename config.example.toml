@@ -2,7 +2,7 @@
 token = "<discord token>"
 activity = "LISTENING"
 status = "To the voices in my head"
-admins = [ 1039853221897846825 ]
+developers = [ 942515478507708446 ]
 testGuilds = [ 734077874708938864 ]
 enabledByDefault = true
 

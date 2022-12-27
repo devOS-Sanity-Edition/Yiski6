@@ -1,5 +1,6 @@
 package one.devos.yiski.commands.slash
 
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel
@@ -15,7 +16,7 @@ import xyz.artrinix.aviation.command.slash.annotations.SlashSubCommand
 import xyz.artrinix.aviation.command.slash.annotations.SubCommandHolder
 import xyz.artrinix.aviation.entities.Scaffold
 
-@SlashCommand("admin", "Manage settings for the bot", guildOnly = true, developerOnly = true, hidden = true)
+@SlashCommand("admin", "Manage settings for the bot", guildOnly = true, userPermissions = [Permission.ADMINISTRATOR], hidden = true)
 class Admin : Scaffold {
     @SubCommandHolder("channel", "Channel management commands")
     class Channel {

@@ -62,7 +62,7 @@ object Yiski {
             .apply {
                 ratelimitProvider = DefaultRateLimitStrategy()
                 doTyping = true
-                developers.addAll(config.bot.admins.toTypedArray())
+                developers.addAll(config.bot.developers.toTypedArray())
                 testGuilds = config.bot.testGuilds
                 registerDefaultParsers()
             }

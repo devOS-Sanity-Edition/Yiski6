@@ -32,7 +32,7 @@ object Config {
             val token: String,
             val activity: String = "LISTENING",
             val status: String = "To the voices in my head",
-            val admins: Set<Long>,
+            val developers: Set<Long>,
             val testGuilds: MutableSet<Long>,
             val enabledByDefault: Boolean
         )
