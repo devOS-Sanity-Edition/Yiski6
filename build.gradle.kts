@@ -24,7 +24,7 @@ val exposedVersion: String by project
 val ktorVersion: String by project
 
 dependencies {// Logger libraries for writing to the console
-    api("org.slf4j:slf4j-api:2.0.3")
+    api("org.slf4j:slf4j-api:2.0.5")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("ch.qos.logback:logback-core:$logbackVersion")
     // Kotlin
@@ -55,11 +55,11 @@ dependencies {// Logger libraries for writing to the console
     implementation("com.sedmelluq:lavaplayer:1.3.77")
     implementation("com.sedmelluq:lavaplayer-natives:1.3.14")
     // JDA
-    implementation("com.github.DV8FromtheWorld:JDA:v5.0.0-beta-2") {
+    implementation("com.github.DV8FromtheWorld:JDA:v5.0.0-beta.2") {
         exclude(module = "opus-java")
     }
     // Kotlin Extensions for JDA
-    implementation("com.github.minndevelopment:jda-ktx:0.10.0-beta-1")
+    implementation("com.github.minndevelopment:jda-ktx:0.10.0-beta.1")
 }
 
 tasks.withType<KotlinCompile> {
