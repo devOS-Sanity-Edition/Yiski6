@@ -36,7 +36,7 @@ object Yiski {
 
     val logger: Logger = LoggerFactory.getLogger(Yiski::class.java)
     val database = Database.connect(config.database.url, config.database.driver, databaseConfig = DatabaseConfig { useNestedTransactions = true })
-    val tiktok = TikTok(config.tiktok.sessionId)
+    val tiktok = TikTok()
 
     @JvmStatic
     fun main(args: Array<String>): Unit = runBlocking {

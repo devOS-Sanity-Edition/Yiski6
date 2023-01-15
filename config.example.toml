@@ -9,7 +9,3 @@ enabledByDefault = true
 [database]
 driver = "org.h2.Driver"
 url = "jdbc:h2:./database"
-
-[tiktok]
-sessionId = "<refer to readme>"
-

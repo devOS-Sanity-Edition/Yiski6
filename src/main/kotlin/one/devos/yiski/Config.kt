@@ -25,7 +25,6 @@ object Config {
     data class YiskiConfig(
         val bot: BotConfig,
         val database: DatabaseConfig,
-        val tiktok: TikTokConfig
     ) {
         @Serializable
         data class BotConfig(
@@ -41,11 +40,6 @@ object Config {
         data class DatabaseConfig(
             val driver: String = "org.h2.Driver",
             val url: String = "jdbc:h2:./database.h2"
-        )
-
-        @Serializable
-        data class TikTokConfig(
-            var sessionId: String,
         )
     }
 

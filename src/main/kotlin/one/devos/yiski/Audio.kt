@@ -66,8 +66,6 @@ object Audio {
             .replace("&", "and")
             .replace("%", "percent")
             .replace("+", "plus")
-            .replace("_", "")
-            .replace(" ", "+")
 
         parsedText.chunked(300).forEach {
             val data = Yiski.tiktok.tts(voice, it)
