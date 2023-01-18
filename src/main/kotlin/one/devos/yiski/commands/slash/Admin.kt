@@ -16,7 +16,7 @@ import xyz.artrinix.aviation.command.slash.annotations.SlashSubCommand
 import xyz.artrinix.aviation.command.slash.annotations.SubCommandHolder
 import xyz.artrinix.aviation.entities.Scaffold
 
-@SlashCommand("admin", "Manage settings for the bot", guildOnly = true, userPermissions = [Permission.ADMINISTRATOR], hidden = true)
+@SlashCommand("admin", "Manage settings for the bot", guildOnly = true, defaultUserPermissions = [Permission.ADMINISTRATOR])
 class Admin : Scaffold {
     @SubCommandHolder("channel", "Channel management commands")
     class Channel {
