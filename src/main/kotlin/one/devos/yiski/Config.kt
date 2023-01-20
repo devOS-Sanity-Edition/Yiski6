@@ -30,16 +30,16 @@ object Config {
         data class BotConfig(
             val token: String,
             val activity: String = "LISTENING",
-            val status: String = "To the voices in my head",
+            val status: String = "your messages",
             val developers: Set<Long>,
-            val testGuilds: MutableSet<Long>,
-            val enabledByDefault: Boolean
+            val enabledByDefault: Boolean,
+            val leaveVoiceChannelAutomatically: Boolean
         )
 
         @Serializable
         data class DatabaseConfig(
             val driver: String = "org.h2.Driver",
-            val url: String = "jdbc:h2:./database.h2"
+            val url: String = "jdbc:h2:./yiski"
         )
     }
 

@@ -1,11 +1,15 @@
 package one.devos.yiski
 
+import dev.minn.jda.ktx.coroutines.await
 import dev.minn.jda.ktx.events.listener
+import dev.minn.jda.ktx.generics.getChannel
+import dev.minn.jda.ktx.jdabuilder.default
 import dev.minn.jda.ktx.jdabuilder.intents
-import dev.minn.jda.ktx.jdabuilder.light
 import kotlinx.coroutines.runBlocking
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Activity
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.requests.GatewayIntent
@@ -16,6 +20,7 @@ import one.devos.yiski.tables.MembersSettings
 import one.devos.yiski.tiktok.TikTok
 import one.devos.yiski.tiktok.Voices
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.Logger
@@ -53,8 +58,8 @@ object Yiski {
             )
         }
 
-        jda = light(config.bot.token, enableCoroutines = true) {
-            intents += listOf(GatewayIntent.MESSAGE_CONTENT)
+        jda = default(config.bot.token, enableCoroutines = true) {
+            intents += listOf(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_VOICE_STATES)
             setActivity(Activity.of(Activity.ActivityType.valueOf(config.bot.activity.uppercase()), config.bot.status))
         }
 
@@ -63,7 +68,6 @@ object Yiski {
                 ratelimitProvider = DefaultRateLimitStrategy()
                 doTyping = true
                 developers.addAll(config.bot.developers.toTypedArray())
-                testGuilds = config.bot.testGuilds
                 registerDefaultParsers()
             }
             .build()
@@ -103,6 +107,34 @@ object Yiski {
             } ?: return@listener
 
             Audio.executeTikTok(event.message.contentDisplay, voice, event.guild)
+        }
+
+        jda.listener<GuildVoiceUpdateEvent> { event ->
+            if (config.bot.leaveVoiceChannelAutomatically == false) return@listener
+            if (event.oldValue == null) return@listener
+            if (event.newValue?.idLong == event.oldValue?.idLong) return@listener
+
+            val voiceChannel = event.oldValue!!
+
+            if (voiceChannel.members.contains(event.guild.selfMember)) {
+                if (voiceChannel.members.none { it.idLong != jda.selfUser.idLong }) {
+                    event.guild.audioManager.closeAudioConnection()
+
+                    val textChannelId =
+                        newSuspendedTransaction {
+                            return@newSuspendedTransaction LinkedChannel
+                                .find(LinkedChannels.voiceChannel eq voiceChannel.idLong)
+                                .firstOrNull()
+                        }
+                        ?.textChannel
+                        ?: return@listener
+
+                    event.guild.getChannel<TextChannel>(textChannelId)
+                        ?.sendMessage("I have left ${voiceChannel.asMention} because it got lonely.")
+                        ?.await()
+                        ?: return@listener
+                }
+            }
         }
     }
 

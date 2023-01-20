@@ -1,5 +1,6 @@
 package one.devos.yiski
 
+import com.sedmelluq.discord.lavaplayer.player.AudioConfiguration
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
@@ -27,6 +28,7 @@ object Audio {
     val playerManager = DefaultAudioPlayerManager().apply {
         AudioSourceManagers.registerRemoteSources(this)
         AudioSourceManagers.registerLocalSource(this)
+        configuration.resamplingQuality = AudioConfiguration.ResamplingQuality.HIGH
         registerSourceManager(ByteAudioSourceManager())
     }
 
