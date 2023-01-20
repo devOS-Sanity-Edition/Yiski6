@@ -1,5 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.8.0"
@@ -51,14 +51,14 @@ dependencies {// Logger libraries for writing to the console
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-cio:$ktorVersion")
     // Aviation - Storm's command library made by Artrinix, will probably break
-    implementation("xyz.artrinix:aviation:b1e739d8")
+    implementation("xyz.artrinix:aviation:0a3fea1b")
     // Audio dependencies
     //implementation("dev.schlaubi.lavakord:jda:3.7.0")
     implementation("com.sedmelluq:lavaplayer:1.3.77")
     //implementation("com.sedmelluq:lavaplayer-natives:1.3.14")
     implementation("com.github.aikaterna:lavaplayer-natives:original-SNAPSHOT")
     // JDA
-    implementation("net.dv8tion:JDA:5.0.0-beta.2") {
+    implementation("net.dv8tion:JDA:5.0.0-beta.3") {
         exclude(module = "opus-java")
     }
     // Kotlin Extensions for JDA
