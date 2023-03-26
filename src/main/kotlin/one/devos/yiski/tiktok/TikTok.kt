@@ -7,11 +7,11 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.util.*
-import kotlin.jvm.Throws
 
 class TikTok(private val api: String = "tiktok-tts.weilnet.workers.dev") {
     private val client = HttpClient(CIO) {
@@ -26,12 +26,20 @@ class TikTok(private val api: String = "tiktok-tts.weilnet.workers.dev") {
         val response = client.post("https://$api/api/generation") {
             contentType(ContentType.Application.Json)
             setBody(WelibyteRequest(text,  voice.code))
-        }.body<WelibyteResponse>()
+        }
 
-        if (response.success) {
-            return response.data!!
+        if (response.status == HttpStatusCode.OK) {
+            try {
+                val body = response.body<WelibyteResponse>()
+                if (body.success) return body.data!!
+                else error(body.error!!)
+            } catch (err: JsonConvertException) {
+                val body = response.body<WelibyteException>()
+                if (body.success) error(body.data.error)
+                else error(body.error!!)
+            }
         } else {
-            error(response.error!!)
+            error(response.status)
         }
     }
 
@@ -47,6 +55,18 @@ class TikTok(private val api: String = "tiktok-tts.weilnet.workers.dev") {
             val success: Boolean,
             val data: String? = null,
             val error: String? = null
+        )
+
+        @Serializable
+        data class WelibyteException(
+            val success: Boolean,
+            val data: WelibyteError,
+            val error: String? = null
+        )
+
+        @Serializable
+        data class WelibyteError(
+            val error: String
         )
     }
 }

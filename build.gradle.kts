@@ -54,7 +54,7 @@ dependencies {// Logger libraries for writing to the console
     implementation("xyz.artrinix:aviation:8804d641")
     // Audio dependencies
     //implementation("dev.schlaubi.lavakord:jda:3.7.0")
-    implementation("com.github. devoxin:lavaplayer:1.4.2")
+    implementation("com.github.devoxin:lavaplayer:1.4.2")
     //implementation("com.sedmelluq:lavaplayer-natives:1.3.14")
     implementation("com.github.aikaterna:lavaplayer-natives:original-SNAPSHOT")
     // JDA
