@@ -51,18 +51,18 @@ dependencies {// Logger libraries for writing to the console
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-cio:$ktorVersion")
     // Aviation - Storm's command library made by Artrinix, will probably break
-    implementation("xyz.artrinix:aviation:0a3fea1b")
+    implementation("xyz.artrinix:aviation:8804d641")
     // Audio dependencies
     //implementation("dev.schlaubi.lavakord:jda:3.7.0")
-    implementation("com.sedmelluq:lavaplayer:1.3.77")
+    implementation("com.github. devoxin:lavaplayer:1.4.2")
     //implementation("com.sedmelluq:lavaplayer-natives:1.3.14")
     implementation("com.github.aikaterna:lavaplayer-natives:original-SNAPSHOT")
     // JDA
-    implementation("net.dv8tion:JDA:5.0.0-beta.3") {
+    implementation("net.dv8tion:JDA:5.0.0-beta.6") {
         exclude(module = "opus-java")
     }
     // Kotlin Extensions for JDA
-    implementation("com.github.minndevelopment:jda-ktx:0.10.0-beta.1")
+    implementation("com.github.minndevelopment:jda-ktx:9fc90f6")
 }
 
 tasks.withType<KotlinCompile> {
