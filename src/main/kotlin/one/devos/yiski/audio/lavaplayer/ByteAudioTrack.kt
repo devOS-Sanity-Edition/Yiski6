@@ -1,4 +1,4 @@
-package one.devos.yiski.lavaplayer
+package one.devos.yiski.audio.lavaplayer
 
 import com.sedmelluq.discord.lavaplayer.container.MediaContainerDescriptor
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManager
