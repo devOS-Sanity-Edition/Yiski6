@@ -34,19 +34,8 @@ jobs:
       - name: 'Yiski6: Schizophrenia Edition'
         uses: actions/upload-artifact@v3
         with:
-          name: Yiski6 Jar
+          name: Yiski6
           path: build/libs/Yiski6-Fat.jar
-
-      - name: 'Cache built jar'
-        id: cache-build
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-built-jars
-        with:
-          path: build/libs
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Yiski6-Fat.jar') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-hash-${{ hashFiles('**/Yiski6-Fat.jar') }}
 
   docker:
     runs-on: ubuntu-latest
@@ -56,16 +45,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: 'Restore cache for built jar'
-        id: cache-build
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-built-jars
+      - name: 'Download artifact of built jar'
+        uses: actions/download-artifact@v3
         with:
-          path: build/libs
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Yiski6-Fat.jar') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-hash-${{ hashFiles('**/Yiski6-Fat.jar') }}
+          name: Yiski6
 
       - name: Docker meta
         id: meta
