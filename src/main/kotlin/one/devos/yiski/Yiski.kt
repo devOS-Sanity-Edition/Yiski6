@@ -88,6 +88,9 @@ object Yiski {
             if (event.author.isBot || !event.isFromGuild) return@listener
             if (event.guild.selfMember.voiceState == null || !event.guild.selfMember.voiceState!!.inAudioChannel()) return@listener
 
+            if (!event.member!!.voiceState!!.inAudioChannel()) return@listener
+            if (event.member!!.voiceState!!.channel!!.idLong != event.guild.selfMember.voiceState!!.channel!!.idLong) return@listener
+
             newSuspendedTransaction {
                 return@newSuspendedTransaction LinkedChannel.find {
                     (LinkedChannels.textChannel eq event.channel.idLong) and (LinkedChannels.voiceChannel eq event.guild.selfMember.voiceState!!.channel!!.idLong)
