@@ -34,7 +34,7 @@ import xyz.artrinix.aviation.internal.utils.on
 import xyz.artrinix.aviation.ratelimit.DefaultRateLimitStrategy
 
 object Yiski {
-    private val version = this::class.java.`package`.implementationVersion ?: "DEV"
+    val version = this::class.java.`package`.implementationVersion ?: "DEV"
     val config = Config.loadConfig()
 
     private lateinit var jda: JDA
