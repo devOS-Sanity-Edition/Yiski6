@@ -1,4 +1,4 @@
-package one.devos.yiski
+package one.devos.yiski.audio
 
 import com.sedmelluq.discord.lavaplayer.player.AudioConfiguration
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler
@@ -14,9 +14,7 @@ import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel
 import net.dv8tion.jda.api.exceptions.InsufficientPermissionException
 import net.dv8tion.jda.api.managers.AudioManager
-import one.devos.yiski.audio.AudioPlayerSendHandler
-import one.devos.yiski.audio.PlayerUnity
-import one.devos.yiski.audio.TrackScheduler
+import one.devos.yiski.Yiski
 import one.devos.yiski.audio.lavaplayer.ByteAudioSourceManager
 import one.devos.yiski.tiktok.Voices
 

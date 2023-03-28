@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.requests.GatewayIntent
+import one.devos.yiski.audio.Audio
 import one.devos.yiski.tables.LinkedChannel
 import one.devos.yiski.tables.LinkedChannels
 import one.devos.yiski.tables.MembersSetting

@@ -4,7 +4,7 @@ import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel
-import one.devos.yiski.Audio
+import one.devos.yiski.audio.Audio
 import one.devos.yiski.tables.LinkedChannel
 import one.devos.yiski.tables.LinkedChannels
 import one.devos.yiski.tables.MembersSetting
