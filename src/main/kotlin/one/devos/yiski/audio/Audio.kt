@@ -7,6 +7,7 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
+import net.dv8tion.jda.api.audio.SpeakingMode
 import net.dv8tion.jda.api.audio.hooks.ConnectionListener
 import net.dv8tion.jda.api.audio.hooks.ConnectionStatus
 import net.dv8tion.jda.api.entities.Guild
@@ -17,6 +18,7 @@ import net.dv8tion.jda.api.managers.AudioManager
 import one.devos.yiski.Yiski
 import one.devos.yiski.audio.lavaplayer.ByteAudioSourceManager
 import one.devos.yiski.tiktok.Voices
+import java.util.*
 
 object Audio {
     /**
@@ -72,7 +74,11 @@ object Audio {
                     }
                 }
 
-                override fun onUserSpeaking(user: User, speaking: Boolean) {
+//                override fun onUserSpeaking(user: User, speaking: Boolean) {
+//
+//                }
+
+                override fun onUserSpeakingModeUpdate(user: User, modes: EnumSet<SpeakingMode>) {
 
                 }
             }
