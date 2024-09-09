@@ -5,6 +5,11 @@ import dev.minn.jda.ktx.events.listener
 import dev.minn.jda.ktx.generics.getChannel
 import dev.minn.jda.ktx.jdabuilder.default
 import dev.minn.jda.ktx.jdabuilder.intents
+import io.ktor.server.application.*
+import io.ktor.server.cio.*
+import io.ktor.server.engine.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 import kotlinx.coroutines.runBlocking
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.entities.Activity
@@ -140,6 +145,9 @@ object Yiski {
                 }
             }
         }
+
+        io.ktor.server.engine.embeddedServer(CIO, port = 8080, host = "0.0.0.0", module = Application::module)
+            .start(wait = true)
     }
 
     private fun listenAviationEvents() {
@@ -149,6 +157,18 @@ object Yiski {
 
         aviation.on<CommandFailedEvent> {
             logger.error("[Command Execution] A command has failed. ", this.error)
+        }
+    }
+}
+
+fun Application.module() {
+    configureRouting()
+}
+
+fun Application.configureRouting() {
+    routing {
+        get("/heartbeat") {
+            call.respondText("howdy")
         }
     }
 }
