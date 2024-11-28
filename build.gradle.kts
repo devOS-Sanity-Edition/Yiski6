@@ -86,7 +86,7 @@ tasks.withType<ShadowJar> {
 }
 
 application { // apparently needed for ktor? ok.
-    mainClass.set("one.devos.yiski.YiskiKt")
+    mainClass.set("one.devos.yiski.Yiski")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
